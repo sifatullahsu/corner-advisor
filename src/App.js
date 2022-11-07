@@ -1,13 +1,15 @@
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { RouterProvider } from 'react-router-dom';
+import { route } from './router/router';
 
 function App() {
   return (
-    <div>
-      <h1>Taiwaind testing</h1>
+    <>
+      <RouterProvider router={route}></RouterProvider>
       <ToastContainer></ToastContainer>
-    </div>
+    </>
   );
 }
 
