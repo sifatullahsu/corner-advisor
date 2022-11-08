@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer className='bg-base-200'>
+    <footer className='bg-slate-200'>
       <div className='container py-10'>
         <div className="footer text-base-content">
           <div>
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="text-center p-4 bg-base-300 text-base-content text-sm">
+      <div className="text-center p-4 bg-slate-300 text-base-content text-sm">
         <div>
           <p>Copyright © 2022 - All right reserved by Corner Advisor</p>
         </div>
