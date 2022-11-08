@@ -42,3 +42,10 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+#my-story {
+  background: url(../src/assets/bespoke-back.jpg);
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

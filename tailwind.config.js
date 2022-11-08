@@ -12,7 +12,9 @@ module.exports = {
       colors: {
         primary: '#e79802',
         gray: '#f9f9f9',
-        border: '#e6e6e6'
+        border: '#e6e6e6',
+        secondary: '#242d60',
+        text: '#53616d'
       },
       fontSize: {
         mxs: ['13px', '18px']
