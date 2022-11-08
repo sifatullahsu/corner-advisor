@@ -6,6 +6,7 @@ import MyReviewsPage from "../pages/MyReviewsPage";
 import RegisterPage from "../pages/RegisterPage";
 import ServicesPage from "../pages/ServicesPage";
 import SingleServicesPage from "../pages/SingleServicesPage";
+import PrivateRoute from "./PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../layouts/Main");
@@ -42,15 +43,15 @@ export const route = createBrowserRouter([
       },
       {
         path: '/my-reviews',
-        element: <MyReviewsPage></MyReviewsPage>
+        element: <PrivateRoute><MyReviewsPage></MyReviewsPage></PrivateRoute>
       },
       {
         path: '/my-reviews/:id',
-        element: <EditReview></EditReview>
+        element: <PrivateRoute><EditReview></EditReview></PrivateRoute>
       },
       {
         path: '/add-service',
-        element: <AddServicePage></AddServicePage>
+        element: <PrivateRoute><AddServicePage></AddServicePage></PrivateRoute>
       }
     ]
   }
