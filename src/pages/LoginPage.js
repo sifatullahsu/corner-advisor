@@ -1,10 +1,17 @@
 import React from 'react';
+import Login from '../components/Login';
 
 const LoginPage = () => {
+
+
   return (
-    <div>
-      Login Page
-    </div>
+    <section className='py-10'>
+      <div className='container'>
+        <div className='max-w-lg mx-auto'>
+          <Login></Login>
+        </div>
+      </div>
+    </section>
   );
 };
 

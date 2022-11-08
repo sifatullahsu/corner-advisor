@@ -10,7 +10,9 @@ module.exports = {
         padding: '.5rem'
       },
       colors: {
-        primary: '#e79802'
+        primary: '#e79802',
+        gray: '#f9f9f9',
+        border: '#e6e6e6'
       },
       fontSize: {
         mxs: ['13px', '18px']

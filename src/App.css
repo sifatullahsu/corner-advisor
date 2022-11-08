@@ -28,3 +28,10 @@ header {
   color: #e79802;
   border-bottom: 1px solid #e79802;
 }
+
+.navbar li button {
+  background-color: #e79802;
+  color: #fff;
+  padding: 5px 5px 5px 7px;
+  border-radius: 3px !important;
+}

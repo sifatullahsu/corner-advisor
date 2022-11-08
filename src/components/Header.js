@@ -1,10 +1,21 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, Navigate, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { AuthContext } from '../contexts/AuthContextComp';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogout } = useContext(AuthContext);
+
+  const handleUserLogout = () => {
+    userLogout()
+      .then(res => {
+        toast.success('Logout Successful!!');
+        Navigate('/');
+      })
+      .catch(err => { })
+  }
 
   const navMenuItems = () => {
     return (
@@ -22,6 +33,7 @@ const Header = () => {
             <>
               <li><NavLink to='/my-reviews'>My Reviews</NavLink></li>
               <li><NavLink to='/add-service'>Add Service</NavLink></li>
+              <li><button onClick={handleUserLogout}><FaSignOutAlt></FaSignOutAlt></button></li>
             </>
         }
       </>
