@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import { AuthContext } from '../contexts/AuthContextComp';
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
   const navMenuItems = () => {
     return (
       <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/services'>Services</NavLink></li>
         <li><NavLink to='/blog'>Blog</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/register'>Register</NavLink></li>
-        <li><NavLink to='/my-reviews'>My Reviews</NavLink></li>
-        <li><NavLink to='/add-service'>Add Service</NavLink></li>
+        {
+          !user ?
+            <>
+              <li><NavLink to='/login'>Login</NavLink></li>
+              <li><NavLink to='/register'>Register</NavLink></li>
+            </>
+            :
+            <>
+              <li><NavLink to='/my-reviews'>My Reviews</NavLink></li>
+              <li><NavLink to='/add-service'>Add Service</NavLink></li>
+            </>
+        }
       </>
     );
   }
