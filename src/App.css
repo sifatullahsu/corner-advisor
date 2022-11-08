@@ -35,3 +35,10 @@ header {
   padding: 5px 5px 5px 7px;
   border-radius: 3px !important;
 }
+
+#hero-section {
+  background: url(../src/assets/hero-banner-bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
