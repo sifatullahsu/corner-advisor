@@ -14,7 +14,7 @@ const AddServicePage = () => {
 
     const data = {
       name,
-      price,
+      price: `$${price}`,
       img: image,
       description
     }
@@ -26,7 +26,10 @@ const AddServicePage = () => {
       },
       body: JSON.stringify(data)
     })
-      .then(data => toast.success('Service added successfully..'))
+      .then(data => {
+        form.reset();
+        toast.success('Service added successfully..')
+      })
       .catch(err => toast.error('Somthing is wrong..'))
   }
 

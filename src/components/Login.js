@@ -33,19 +33,15 @@ const Login = () => {
       <form onSubmit={handleUserLogin}>
         <div className='grid grid-cols-1 gap-4'>
           <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Email Address</span>
-            </label>
+            <label className="label"><span className="label-text">Email Address</span></label>
             <input name="email" type="email" placeholder="email" className="input input-bordered rounded" required />
           </div>
           <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
+            <label className="label"><span className="label-text">Password</span></label>
             <input name="password" type="password" placeholder="password" className="input input-bordered rounded" required />
           </div>
         </div>
-        <input className='btn bg-primary border-primary text-sm font-normal rounded mt-4' type="submit" value="Login" />
+        <input className='btn btn-primary rounded mt-4' type="submit" value="Login" />
       </form>
 
       <p className='pt-8 pb-2'>Want social login?</p>
@@ -53,7 +49,7 @@ const Login = () => {
 
       <div className='mt-8'>
         Don't have an account? <Link
-          to='/register' className='font-semibold'>Register here</Link>
+          to='/register' className='font-medium'>Register here</Link>
       </div>
     </div>
   );
