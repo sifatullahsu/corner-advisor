@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, Navigate, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { AuthContext } from '../contexts/AuthContextComp';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaSignOutAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
 const Header = () => {
@@ -49,6 +49,12 @@ const Header = () => {
           </div>
           <div className='basis-full md:basis-6/12 p-2 text-center md:text-right'>
             <span>Follow us: </span>
+            <a href="https://www.facebook.com/sifatullahhh" target="_blank" rel="noreferrer">
+              <FaFacebook className='inline mx-2'></FaFacebook>
+            </a>
+            <a href="https://www.linkedin.com/sifatullahsu" target="_blank" rel="noreferrer">
+              <FaLinkedin className='inline mx-2'></FaLinkedin>
+            </a>
           </div>
         </div>
       </div>

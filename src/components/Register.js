@@ -9,7 +9,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/my-reviews';
+  const from = location.state?.pathname || '/my-reviews';
 
   const handleUserRegister = (event) => {
     event.preventDefault();

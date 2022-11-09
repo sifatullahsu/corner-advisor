@@ -9,7 +9,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/my-reviews';
+  const from = location.state?.pathname || '/my-reviews';
 
   const handleUserLogin = event => {
     event.preventDefault();

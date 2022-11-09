@@ -17,7 +17,6 @@ const MyReviewsPage = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data.data);
         setReviews(data.data)
       })
   }, [user]);

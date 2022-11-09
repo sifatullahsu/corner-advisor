@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import AddReview from '../components/AddReview';
 import NeedHelp from '../components/NeedHelp';
 import Reviews from '../components/Reviews';
@@ -14,6 +13,9 @@ const SingleServicesPage = () => {
   const { _id, name, img, price, description } = service;
 
   const [reviews, setReviews] = useState([]);
+
+  const location = useLocation();
+  const navigation = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
@@ -52,7 +54,10 @@ const SingleServicesPage = () => {
                 user ?
                   <AddReview serviceId={_id}></AddReview>
                   :
-                  <p>Want to add reviews here? <Link to='/login' className='font-medium'>Please Login</Link></p>
+                  <>
+                    <p>Want to add reviews here? <Link to='/login' state={location} className='font-medium'>Please Login</Link></p>
+
+                  </>
               }
             </div>
           </div>
