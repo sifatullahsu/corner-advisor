@@ -16,7 +16,7 @@ const Hero = () => {
           <div className='basis-6/12'></div>
         </div>
       </section>
-      <section className='py-10 bg-slate-200'>
+      <section className='py-10 bg-gray'>
         <div className="container flex items-center flex-wrap">
           <div className='lg:basis-4/12 py-3'>
             <h2 className='text-3xl font-bold text-secondary'>Business Workflow <br />Revealed</h2>

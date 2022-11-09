@@ -1,19 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Hero from '../components/Hero';
 import videoButton from '../assets/video-button.png';
 import group42 from '../assets/Group-42.svg';
 import section3 from '../assets/section3.png';
+import Services from '../components/Services';
 
 const HomePage = () => {
+  const services = useLoaderData();
+
   return (
     <div>
       <Hero></Hero>
+      <section className='py-20'>
+        <div className="container">
+          <div className='max-w-5xl mx-auto'>
+            <div className='text-center max-w-xl mx-auto mb-10'>
+              <h2 className='text-3xl font-bold mb-5 text-secondary'>All Advantage Services</h2>
+              <p className='text-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod lorem sit amet metus malesuada.</p>
+            </div>
+            <Services services={services}></Services>
+            <div className='mt-14 text-center'>
+              <Link to='/services'>
+                <button className="btn btn-primary rounded">View all</button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section >
       <section id='my-story' className='py-[70px] lg:py-[150px]'>
         <div className="container flex flex-wrap">
           <div className='md:basis-3/6'>
             <h2 className='text-3xl font-bold mb-5 text-secondary'>Brainstorming Interactive Ideas on Business Transformation</h2>
-            <p className='mb-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia hendrerit sapien mollis pretium. Sed ultricies tempus malesuada. Nulla faucibu lacus neque, eu consequat enim mollis pharetra.</p>
+            <p className='mb-5 text-text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia hendrerit sapien mollis pretium. Sed ultricies tempus malesuada. Nulla faucibu lacus neque, eu consequat enim mollis pharetra.</p>
             <Link to='' className='flex items-center'>
               <img src={videoButton} className='w-10 mr-4' alt="" />
               <p>Watch My Story</p>
@@ -50,7 +69,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </div >
   );
 };
 

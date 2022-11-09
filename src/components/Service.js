@@ -1,0 +1,26 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Service = ({ service }) => {
+  const { _id, name, price, img, description } = service;
+
+  return (
+    <div className="service card border border-border bg-white rounded">
+      <figure>
+        <img src={img} className='py-3 border-b border-border' alt="" />
+      </figure>
+      <div className="card-body bg-gray p-4">
+        <h4 className="card-title text-lg text-secondary">{name}</h4>
+        <p>{price}</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, distinctio.</p>
+        <div className="card-actions">
+          <Link to={`services/${_id}`}>
+            <button className="btn btn-primary rounded">Buy Now</button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Service;

@@ -19,7 +19,8 @@ export const route = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage></HomePage>
+        element: <HomePage></HomePage>,
+        loader: () => fetch('http://localhost:5000/services?page=1&size=3')
       },
       {
         path: '/services',
@@ -52,6 +53,10 @@ export const route = createBrowserRouter([
       {
         path: '/add-service',
         element: <PrivateRoute><AddServicePage></AddServicePage></PrivateRoute>
+      },
+      {
+        path: '/*',
+        element: <div>Error Page</div>
       }
     ]
   }
