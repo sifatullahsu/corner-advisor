@@ -14,8 +14,8 @@ const Service = ({ service }) => {
         <p>{price}</p>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, distinctio.</p>
         <div className="card-actions">
-          <Link to={`services/${_id}`}>
-            <button className="btn btn-primary rounded">Buy Now</button>
+          <Link to={`/services/${_id}`}>
+            <button className="btn btn-primary rounded">View details</button>
           </Link>
         </div>
       </div>

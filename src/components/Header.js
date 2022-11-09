@@ -63,7 +63,7 @@ const Header = () => {
                 {navMenuItems()}
               </ul>
             </div>
-            <Link>
+            <Link to='/'>
               <img src={logo} alt="" className='w-32' />
             </Link>
           </div>

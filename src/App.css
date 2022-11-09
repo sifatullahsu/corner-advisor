@@ -20,6 +20,7 @@ header {
   font-size: 13px;
   text-transform: uppercase;
   transition-property: unset;
+  border-radius: 0 !important;
 }
 
 .navbar li a.active {
@@ -27,6 +28,12 @@ header {
   background-color: unset;
   color: #e79802;
   border-bottom: 1px solid #e79802;
+
+}
+
+.menu :where(li:not(.menu-title):not(:empty))> :where(:not(ul).active),
+.menu :where(li:not(.menu-title):not(:empty))> :where(*:not(ul):active) {
+  background-color: unset;
 }
 
 .navbar li button {

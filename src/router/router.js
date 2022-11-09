@@ -1,3 +1,4 @@
+import Error from "../components/Error";
 import AddServicePage from "../pages/AddServicePage";
 import BlogPage from "../pages/BlogPage";
 import EditReview from "../pages/EditReview";
@@ -24,11 +25,13 @@ export const route = createBrowserRouter([
       },
       {
         path: '/services',
-        element: <ServicesPage></ServicesPage>
+        element: <ServicesPage></ServicesPage>,
+        loader: () => fetch('http://localhost:5000/services')
       },
       {
         path: '/services/:id',
-        element: <SingleServicesPage></SingleServicesPage>
+        element: <SingleServicesPage></SingleServicesPage>,
+        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
       },
       {
         path: '/login',
@@ -52,11 +55,12 @@ export const route = createBrowserRouter([
       },
       {
         path: '/add-service',
-        element: <PrivateRoute><AddServicePage></AddServicePage></PrivateRoute>
+        // element: <PrivateRoute><AddServicePage></AddServicePage></PrivateRoute>
+        element: <AddServicePage></AddServicePage>
       },
       {
         path: '/*',
-        element: <div>Error Page</div>
+        element: <Error></Error>
       }
     ]
   }
