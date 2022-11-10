@@ -22,6 +22,7 @@ const SingleServicesPage = () => {
 
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const [reviewUpdate, setReviewUpdate] = useState(true);
   const location = useLocation();
   const pageId = location.pathname.split('/services/')[1];
 
@@ -31,19 +32,17 @@ const SingleServicesPage = () => {
       .then(data => {
         setLoading(false);
         setServices(data);
+
+        fetch(`https://corner-advisor-server.vercel.app/reviews?serviceId=${data._id}`)
+          .then(res => res.json())
+          .then(data => {
+            setReviews(data.data);
+          })
       })
       .catch(err => {
         setLoading(false)
       })
-  }, [pageId]);
-
-  useEffect(() => {
-    fetch(`https://corner-advisor-server.vercel.app/reviews?serviceId=${_id}`)
-      .then(res => res.json())
-      .then(data => {
-        setReviews(data.data);
-      })
-  }, [_id]);
+  }, [pageId, reviewUpdate]);
 
 
   if (loading) {
@@ -93,7 +92,12 @@ const SingleServicesPage = () => {
               <h3 className='text-base font-semibold mb-4 text-secondary'>Add your review</h3>
               {
                 user ?
-                  <AddReview serviceId={_id} seviceName={name}></AddReview>
+                  <AddReview
+                    serviceId={_id}
+                    seviceName={name}
+                    reviewUpdate={reviewUpdate}
+                    setReviewUpdate={setReviewUpdate}
+                  ></AddReview>
                   :
                   <>
                     <p>Want to add reviews here? <Link to='/login' state={location} className='font-medium'>Please Login</Link></p>

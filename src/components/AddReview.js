@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthContextComp';
 
-const AddReview = ({ serviceId, seviceName }) => {
+const AddReview = ({ serviceId, seviceName, reviewUpdate, setReviewUpdate }) => {
 
   const { user } = useContext(AuthContext);
 
@@ -38,6 +38,7 @@ const AddReview = ({ serviceId, seviceName }) => {
     })
       .then(data => {
         form.reset();
+        setReviewUpdate(!reviewUpdate);
         toast.success('Review added..');
       })
       .catch(err => toast.error('Somthing is wrong..'))
