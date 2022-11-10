@@ -23,7 +23,7 @@ const AddServicePage = () => {
       description
     }
 
-    fetch('http://localhost:5000/service', {
+    fetch('https://corner-advisor-server.vercel.app/service', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

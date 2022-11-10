@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import AddReview from '../components/AddReview';
+import Error from '../components/Error';
 import NeedHelp from '../components/NeedHelp';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
@@ -21,12 +22,20 @@ const SingleServicesPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
+    fetch(`https://corner-advisor-server.vercel.app/reviews?serviceId=${_id}`)
       .then(res => res.json())
       .then(data => {
         setReviews(data.data);
       })
   }, [_id]);
+
+
+
+  if (!service?._id) {
+    return (
+      <Error></Error>
+    );
+  }
 
   return (
     <section className='py-20'>

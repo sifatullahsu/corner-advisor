@@ -24,7 +24,7 @@ const AddReview = ({ serviceId }) => {
       review
     }
 
-    fetch('http://localhost:5000/review', {
+    fetch('https://corner-advisor-server.vercel.app/review', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

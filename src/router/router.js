@@ -21,17 +21,17 @@ export const route = createBrowserRouter([
       {
         path: '/',
         element: <HomePage></HomePage>,
-        loader: () => fetch('http://localhost:5000/services?page=1&size=3')
+        loader: () => fetch('https://corner-advisor-server.vercel.app/services?page=1&size=3')
       },
       {
         path: '/services',
         element: <ServicesPage></ServicesPage>,
-        loader: () => fetch('http://localhost:5000/services')
+        loader: () => fetch('https://corner-advisor-server.vercel.app/services')
       },
       {
         path: '/services/:id',
         element: <SingleServicesPage></SingleServicesPage>,
-        loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+        loader: ({ params }) => fetch(`https://corner-advisor-server.vercel.app/services/${params.id}`)
       },
       {
         path: '/login',
@@ -52,7 +52,7 @@ export const route = createBrowserRouter([
       {
         path: '/my-reviews/:id',
         element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({ params }) => fetch(`https://corner-advisor-server.vercel.app/reviews/${params.id}`)
       },
       {
         path: '/add-service',

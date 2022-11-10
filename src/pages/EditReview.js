@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Error from '../components/Error';
+import Loading from '../components/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const EditReview = () => {
@@ -30,7 +32,7 @@ const EditReview = () => {
     }
 
     // console.log(data);
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
+    fetch(`https://corner-advisor-server.vercel.app/reviews/${review._id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json'
@@ -43,6 +45,14 @@ const EditReview = () => {
       })
       .catch(err => toast.error('Somthing is wrong..'))
   }
+
+
+  if (!review?._id) {
+    return (
+      <Error></Error>
+    );
+  }
+
   return (
     <section className='py-10'>
       <div className='container'>

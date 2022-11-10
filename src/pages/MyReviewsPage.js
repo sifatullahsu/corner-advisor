@@ -11,7 +11,7 @@ const MyReviewsPage = () => {
 
   useEffect(() => {
 
-    fetch('http://localhost:5000/get-reviews-by-email', {
+    fetch('https://corner-advisor-server.vercel.app/get-reviews-by-email', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -20,6 +20,7 @@ const MyReviewsPage = () => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setReviews(data.data)
       })
   }, [user]);
