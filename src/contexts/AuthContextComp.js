@@ -41,6 +41,22 @@ const AuthContextComp = ({ children }) => {
     return updateProfile(auth.currentUser, arg)
   }
 
+  const getUserJwt = async (email) => {
+    const currentUser = { email }
+
+    const jwt = await fetch('https://corner-advisor-server.vercel.app/jwt', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(currentUser)
+    })
+
+    const jwtData = await jwt.json();
+
+    return jwtData;
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -59,7 +75,8 @@ const AuthContextComp = ({ children }) => {
     userRegister,
     userLogout,
     userSocialLogin,
-    updateUserProfile
+    updateUserProfile,
+    getUserJwt
   }
 
   return (

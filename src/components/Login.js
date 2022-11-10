@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContextComp';
 import GoogleSignIn from './GoogleSignIn';
 
 const Login = () => {
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, getUserJwt } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,6 +21,10 @@ const Login = () => {
     userLogin(email, password)
       .then(res => {
         toast.success('Successfully logged in!!');
+        getUserJwt(res.user.email)
+          .then(data => {
+            localStorage.setItem('genius-token', data.token);
+          })
         navigate(from, { replace: true });
       })
       .catch(err => {

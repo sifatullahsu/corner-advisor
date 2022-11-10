@@ -2,7 +2,6 @@ import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Error from '../components/Error';
-import Loading from '../components/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const EditReview = () => {
@@ -31,7 +30,6 @@ const EditReview = () => {
       review: reviewText
     }
 
-    // console.log(data);
     fetch(`https://corner-advisor-server.vercel.app/reviews/${review._id}`, {
       method: 'PATCH',
       headers: {

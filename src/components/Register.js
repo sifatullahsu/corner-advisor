@@ -5,7 +5,7 @@ import { AuthContext } from '../contexts/AuthContextComp';
 import GoogleSignIn from './GoogleSignIn';
 
 const Register = () => {
-  const { userRegister, updateUserProfile } = useContext(AuthContext);
+  const { userRegister, updateUserProfile, getUserJwt } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,6 +24,10 @@ const Register = () => {
       .then(result => {
         console.log(result.user);
         form.reset();
+        getUserJwt(result.user.email)
+          .then(data => {
+            localStorage.setItem('genius-token', data.token);
+          })
         updateUserProfile({ displayName: name, photoURL: image })
           .then(res => {
             toast.success('Successfully logged in!!');

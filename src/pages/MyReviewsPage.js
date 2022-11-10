@@ -11,22 +11,20 @@ const MyReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch('https://corner-advisor-server.vercel.app/get-reviews-by-email', {
-      method: 'POST',
+    fetch(`https://corner-advisor-server.vercel.app/get-reviews-by-email?email=${user.email}`, {
       headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ email: user.email })
+        authorization: `Bearer ${localStorage.getItem('genius-token')}`
+      }
     })
       .then(res => res.json())
       .then(data => {
-        setReviews(data.data)
+        setReviews(data.data);
       })
   }, [user]);
 
 
   const handleReviewDelete = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`https://corner-advisor-server.vercel.app/reviews/${id}`, {
       method: 'DELETE'
     })
       .then(data => {

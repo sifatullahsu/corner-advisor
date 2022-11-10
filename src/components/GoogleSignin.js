@@ -5,13 +5,17 @@ import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 
 const GoogleSignIn = ({ from }) => {
-  const { userSocialLogin } = useContext(AuthContext);
+  const { userSocialLogin, getUserJwt } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
     userSocialLogin('google')
       .then(res => {
         toast.success('Successfully logged in!!');
+        getUserJwt(res.user.email)
+          .then(data => {
+            localStorage.setItem('genius-token', data.token);
+          })
         navigate(from);
       })
       .catch(err => {
