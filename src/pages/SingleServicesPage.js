@@ -16,7 +16,8 @@ const SingleServicesPage = () => {
   const { _id, name, img, price, description } = service;
 
   useEffect(() => {
-    document.title = name + " - Corner Advisor";
+    const serviceTitle = name ? name : 'Loading..';
+    document.title = serviceTitle + " - Corner Advisor";
   }, [name]);
 
 
