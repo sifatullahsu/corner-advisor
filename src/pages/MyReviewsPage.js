@@ -38,15 +38,19 @@ const MyReviewsPage = () => {
 
 
   const handleReviewDelete = (id) => {
-    fetch(`https://corner-advisor-server.vercel.app/reviews/${id}`, {
-      method: 'DELETE'
-    })
-      .then(data => {
-        const remainingReviews = reviews.filter(review => review._id !== id);
-        setReviews(remainingReviews);
-        toast.success('Delete successfull..');
+    const confirm = window.confirm('Are you sure, you want to delete the review?');
+
+    if (confirm) {
+      fetch(`https://corner-advisor-server.vercel.app/reviews/${id}`, {
+        method: 'DELETE'
       })
-      .catch(err => toast.error('Somthing is wrong..'))
+        .then(data => {
+          const remainingReviews = reviews.filter(review => review._id !== id);
+          setReviews(remainingReviews);
+          toast.success('Delete successfull..');
+        })
+        .catch(err => toast.error('Somthing is wrong..'))
+    }
   }
 
 

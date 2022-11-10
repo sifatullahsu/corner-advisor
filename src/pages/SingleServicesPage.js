@@ -12,6 +12,7 @@ const SingleServicesPage = () => {
 
   const [service, setServices] = useState({});
   const [loading, setLoading] = useState(true);
+  const [reviewLoading, setReviewLoading] = useState(false);
 
   const { _id, name, img, price, description } = service;
 
@@ -34,9 +35,11 @@ const SingleServicesPage = () => {
         setLoading(false);
         setServices(data);
 
+        setReviewLoading(true);
         fetch(`https://corner-advisor-server.vercel.app/reviews?serviceId=${data._id}`)
           .then(res => res.json())
           .then(data => {
+            setReviewLoading(false);
             setReviews(data.data);
           })
       })
@@ -82,10 +85,17 @@ const SingleServicesPage = () => {
             <div className='pt-8'>
               <h3 className='text-base font-semibold mb-4 text-secondary'>Service Reviews</h3>
               {
-                reviews.length > 0 ?
-                  <Reviews reviews={reviews}></Reviews>
+                reviewLoading ?
+                  <Loading></Loading>
                   :
-                  <p>No review found..</p>
+                  <>
+                    {
+                      reviews.length > 0 ?
+                        <Reviews reviews={reviews}></Reviews>
+                        :
+                        <p>No review found..</p>
+                    }
+                  </>
               }
             </div>
 
