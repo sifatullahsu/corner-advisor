@@ -69,7 +69,7 @@ const MyReviewsPage = () => {
               reviews?.length > 0 ?
                 <Reviews reviews={reviews} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
                 :
-                <p>No review found..</p>
+                <p>No reviews were added..</p>
             }
           </div>
         </div>
