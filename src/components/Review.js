@@ -7,6 +7,10 @@ const Review = ({ review, edit, handleReviewDelete }) => {
 
   return (
     <div className='mb-5 bg-white p-5 border border-border'>
+      {
+        edit &&
+        <p className='text-text text-xs mb-2'>Review for: {review.seviceName}</p>
+      }
       <div className='flex relative'>
         {
           edit &&

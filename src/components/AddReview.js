@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthContextComp';
 
-const AddReview = ({ serviceId }) => {
+const AddReview = ({ serviceId, seviceName }) => {
 
   const { user } = useContext(AuthContext);
 
@@ -12,8 +12,14 @@ const AddReview = ({ serviceId }) => {
     const review = form.review.value;
     const rating = form.rating.value;
 
+    const date = new Date();
+    const dateISO = date.toISOString();
+
+
     const data = {
       serviceId,
+      seviceName,
+      date: dateISO,
       author: {
         name: user.displayName,
         image: user.photoURL,

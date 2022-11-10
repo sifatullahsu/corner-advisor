@@ -70,11 +70,10 @@ const SingleServicesPage = () => {
               <h3 className='text-base font-semibold mb-4 text-secondary'>Add your review</h3>
               {
                 user ?
-                  <AddReview serviceId={_id}></AddReview>
+                  <AddReview serviceId={_id} seviceName={name}></AddReview>
                   :
                   <>
                     <p>Want to add reviews here? <Link to='/login' state={location} className='font-medium'>Please Login</Link></p>
-
                   </>
               }
             </div>
