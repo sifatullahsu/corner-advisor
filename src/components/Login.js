@@ -23,16 +23,16 @@ const Login = () => {
         toast.success('Successfully logged in!!');
         getUserJwt(res.user.email)
           .then(data => {
-            localStorage.setItem('genius-token', data.token);
+            localStorage.setItem('corner-token', data.token);
+            navigate(from, { replace: true });
           })
-        navigate(from, { replace: true });
       })
       .catch(err => {
         toast.error(err.message);
       })
   }
   return (
-    <div className='bg-gray p-10 border border-border'>
+    <div className='bg-gray py-10 px-6 md:p-10 border border-border'>
       <h4 className='text-xl mb-3'>Login</h4>
       <form onSubmit={handleUserLogin}>
         <div className='grid grid-cols-1 gap-4'>

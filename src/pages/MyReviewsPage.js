@@ -7,20 +7,29 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle';
 const MyReviewsPage = () => {
   useDocumentTitle('My Reviews');
 
-  const { user } = useContext(AuthContext);
+  const { user, userLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+
+  console.log(localStorage.getItem('corner-token'));
 
   useEffect(() => {
     fetch(`https://corner-advisor-server.vercel.app/get-reviews-by-email?email=${user.email}`, {
       headers: {
-        authorization: `Bearer ${localStorage.getItem('genius-token')}`
+        authorization: `Bearer ${localStorage.getItem('corner-token')}`
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          return userLogout().then(res => toast.error('You are not authorize user.'));
+        }
+        else {
+          return res.json();
+        }
+      })
       .then(data => {
         setReviews(data.data);
       })
-  }, [user]);
+  }, [user, userLogout]);
 
 
   const handleReviewDelete = (id) => {
@@ -39,10 +48,10 @@ const MyReviewsPage = () => {
     <section className='py-10'>
       <div className='container'>
         <div className='max-w-lg mx-auto'>
-          <div className='bg-gray p-10 border border-border'>
+          <div className='bg-gray py-8 px-3 md:p-10 border border-border'>
             <h4 className='text-xl mb-3'>My reviews</h4>
             {
-              reviews.length > 0 ?
+              reviews?.length > 0 ?
                 <Reviews reviews={reviews} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
                 :
                 <p>No review found..</p>

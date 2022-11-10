@@ -14,9 +14,9 @@ const GoogleSignIn = ({ from }) => {
         toast.success('Successfully logged in!!');
         getUserJwt(res.user.email)
           .then(data => {
-            localStorage.setItem('genius-token', data.token);
+            localStorage.setItem('corner-token', data.token);
+            navigate(from);
           })
-        navigate(from);
       })
       .catch(err => {
         toast.error('Something is wrong!!');

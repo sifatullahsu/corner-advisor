@@ -26,12 +26,12 @@ const Register = () => {
         form.reset();
         getUserJwt(result.user.email)
           .then(data => {
-            localStorage.setItem('genius-token', data.token);
-          })
-        updateUserProfile({ displayName: name, photoURL: image })
-          .then(res => {
-            toast.success('Successfully logged in!!');
-            navigate(from);
+            localStorage.setItem('corner-token', data.token);
+            updateUserProfile({ displayName: name, photoURL: image })
+              .then(res => {
+                toast.success('Successfully logged in!!');
+                navigate(from);
+              })
           })
       })
       .catch(error => {
@@ -41,7 +41,7 @@ const Register = () => {
 
   return (
     <div>
-      <div className='bg-gray p-10 border border-border'>
+      <div className='bg-gray py-10 px-6 md:p-10 border border-border'>
         <h4 className='text-xl mb-3'>Register</h4>
         <form onSubmit={handleUserRegister}>
           <div className='grid grid-cols-1 gap-4'>

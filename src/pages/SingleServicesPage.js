@@ -38,20 +38,20 @@ const SingleServicesPage = () => {
   }
 
   return (
-    <section className='py-20'>
+    <section className='py-10 md:py-20'>
       <div className="container">
-        <div className='max-w-5xl mx-auto bg-gray border border-border p-10 flex gap-8'>
-          <div className='basis-8/12'>
+        <div className='max-w-5xl mx-auto bg-gray border border-border p-2 md:py-10 md:px-4 lg:p-10 flex flex-wrap md:flex-nowrap md:gap-4 lg:gap-8'>
+          <div className='basis-12/12 md:basis-8/12'>
 
             <div className='mb-16'>
               <PhotoProvider>
                 <PhotoView src={img}>
                   <figure>
-                    <img src={img} className='w-full border border-border mb-10' alt="" />
+                    <img src={img} className='w-full border border-border mb-5 lg:mb-10' alt="" />
                   </figure>
                 </PhotoView>
               </PhotoProvider>
-              <h2 className='text-2xl font-semibold mb-4 text-secondary'>{name}</h2>
+              <h2 className='text-xl lg:text-2xl font-semibold mb-4 text-secondary'>{name}</h2>
               <p className='text-text mb-4'>Price: {price}</p>
               <p className='text-text mb-4'>{description}</p>
             </div>
@@ -78,8 +78,8 @@ const SingleServicesPage = () => {
               }
             </div>
           </div>
-          <div className='basis-4/12'>
-            <div className='sticky top-10'>
+          <div className='basis-12/12 md:basis-4/12'>
+            <div className='sticky top-10 mt-8 md:mt-0'>
               <NeedHelp></NeedHelp>
             </div>
           </div>

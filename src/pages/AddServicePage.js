@@ -41,7 +41,7 @@ const AddServicePage = () => {
     <section className='py-10'>
       <div className='container'>
         <div className='max-w-lg mx-auto'>
-          <div className='bg-gray p-10 border border-border'>
+          <div className='bg-gray py-8 px-3 md:p-10 border border-border'>
             <h4 className='text-xl mb-3'>Add new service</h4>
             <form onSubmit={handleAddService}>
               <div className='grid grid-cols-1 gap-4'>
