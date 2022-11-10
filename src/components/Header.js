@@ -45,7 +45,7 @@ const Header = () => {
       <div className="topbar bg-primary text-white text-mxs">
         <div className="container flex">
           <div className='basis-6/12 p-2 hidden md:block'>
-            <p>NEED HELP? TALK TO AN EXPERT 888-123-4567</p>
+            <p>NEED HELP? TALK TO AN EXPERT +8801999999999</p>
           </div>
           <div className='basis-full md:basis-6/12 p-2 text-center md:text-right'>
             <span>Follow us: </span>

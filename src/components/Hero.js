@@ -25,7 +25,7 @@ const Hero = () => {
             <p>I provide services from incorporation or formation of company or entities. provides sourcing, intending, consultancy and financing facilities for importer/exporter & working capital loans, SME loans for local companies.</p>
           </div>
           <div className='lg:basis-3/12 py-3 text-left lg:text-right'>
-            <Link to='/services' className='btn rounded-full font-normal px-10'>Discover More</Link>
+            <Link to='/services' className='btn bg-primary border-primary text-white opacity-100 rounded-full font-normal px-10'>Discover More</Link>
           </div>
         </div>
       </section>

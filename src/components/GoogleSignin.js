@@ -4,21 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 
-const GoogleSignIn = ({ from }) => {
+const GoogleSignIn = ({ from, setLoading }) => {
   const { userSocialLogin, getUserJwt } = useContext(AuthContext);
   const navigate = useNavigate();
 
+
+
   const handleGoogleSignIn = () => {
+    setLoading(true);
     userSocialLogin('google')
       .then(res => {
         toast.success('Successfully logged in!!');
         getUserJwt(res.user.email)
           .then(data => {
+            setLoading(false);
             localStorage.setItem('corner-token', data.token);
             navigate(from);
           })
       })
       .catch(err => {
+        setLoading(false);
         toast.error('Something is wrong!!');
       })
   }

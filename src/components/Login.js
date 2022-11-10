@@ -61,7 +61,7 @@ const Login = () => {
       </form>
 
       <p className='pt-8 pb-2'>Want social login?</p>
-      <GoogleSignIn from={from}></GoogleSignIn>
+      <GoogleSignIn from={from} setLoading={setLoading}></GoogleSignIn>
 
       <div className='mt-8'>
         Don't have an account? <Link
