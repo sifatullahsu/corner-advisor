@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -10,7 +11,6 @@ const MyReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-
     fetch('https://corner-advisor-server.vercel.app/get-reviews-by-email', {
       method: 'POST',
       headers: {
@@ -20,10 +20,22 @@ const MyReviewsPage = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setReviews(data.data)
       })
   }, [user]);
+
+
+  const handleReviewDelete = (id) => {
+    fetch(`http://localhost:5000/reviews/${id}`, {
+      method: 'DELETE'
+    })
+      .then(data => {
+        const remainingReviews = reviews.filter(review => review._id !== id);
+        setReviews(remainingReviews);
+        toast.success('Delete successfull..');
+      })
+      .catch(err => toast.error('Somthing is wrong..'))
+  }
 
   return (
     <section className='py-10'>
@@ -33,7 +45,7 @@ const MyReviewsPage = () => {
             <h4 className='text-xl mb-3'>My reviews</h4>
             {
               reviews.length > 0 ?
-                <Reviews reviews={reviews} edit='true'></Reviews>
+                <Reviews reviews={reviews} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
                 :
                 <p>No review found..</p>
             }

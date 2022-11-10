@@ -12,13 +12,12 @@ const AddReview = ({ serviceId }) => {
     const review = form.review.value;
     const rating = form.rating.value;
 
-    console.log(rating);
-
     const data = {
       serviceId,
       author: {
         name: user.displayName,
-        image: user.photoURL
+        image: user.photoURL,
+        email: user.email
       },
       rating,
       review
