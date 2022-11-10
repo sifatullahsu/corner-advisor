@@ -1,15 +1,32 @@
-import React from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Error from '../components/Error';
+import Loading from '../components/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const EditReview = () => {
 
-  useDocumentTitle('Edit Review')
+  useDocumentTitle('Edit Review');
 
-  const review = useLoaderData();
+  const [review, setReview] = useState({});
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  const pageId = location.pathname.split('/my-reviews/')[1];
+
+  useEffect(() => {
+    fetch(`https://corner-advisor-server.vercel.app/reviews/${pageId}`)
+      .then(res => res.json())
+      .then(data => {
+        setLoading(false);
+        setReview(data);
+      })
+      .catch(err => {
+        setLoading(false)
+      })
+  }, [pageId]);
+
 
   const handleEditReview = (event) => {
     event.preventDefault();
@@ -44,6 +61,11 @@ const EditReview = () => {
       .catch(err => toast.error('Somthing is wrong..'))
   }
 
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
 
   if (!review?._id) {
     return (

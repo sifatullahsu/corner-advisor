@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthContextComp';
 import GoogleSignIn from './GoogleSignIn';
+import Loading from './Loading';
 
 const Login = () => {
   const { userLogin, getUserJwt } = useContext(AuthContext);
+
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,6 +16,7 @@ const Login = () => {
 
   const handleUserLogin = event => {
     event.preventDefault();
+    setLoading(true);
 
     const form = event.target;
     const email = form.email.value;
@@ -23,6 +27,7 @@ const Login = () => {
         toast.success('Successfully logged in!!');
         getUserJwt(res.user.email)
           .then(data => {
+            setLoading(false);
             localStorage.setItem('corner-token', data.token);
             navigate(from, { replace: true });
           })
@@ -31,6 +36,13 @@ const Login = () => {
         toast.error(err.message);
       })
   }
+
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
+
   return (
     <div className='bg-gray py-10 px-6 md:p-10 border border-border'>
       <h4 className='text-xl mb-3'>Login</h4>

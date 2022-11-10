@@ -28,8 +28,7 @@ export const route = createBrowserRouter([
       },
       {
         path: '/services/:id',
-        element: <SingleServicesPage></SingleServicesPage>,
-        loader: ({ params }) => fetch(`https://corner-advisor-server.vercel.app/services/${params.id}`)
+        element: <SingleServicesPage></SingleServicesPage>
       },
       {
         path: '/login',
@@ -49,8 +48,7 @@ export const route = createBrowserRouter([
       },
       {
         path: '/my-reviews/:id',
-        element: <PrivateRoute><EditReview></EditReview></PrivateRoute>,
-        loader: ({ params }) => fetch(`https://corner-advisor-server.vercel.app/reviews/${params.id}`)
+        element: <PrivateRoute><EditReview></EditReview></PrivateRoute>
       },
       {
         path: '/add-service',

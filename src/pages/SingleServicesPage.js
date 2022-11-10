@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { Link, useLoaderData, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AddReview from '../components/AddReview';
 import Error from '../components/Error';
+import Loading from '../components/Loading';
 import NeedHelp from '../components/NeedHelp';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
 
 const SingleServicesPage = () => {
 
-  const service = useLoaderData();
+  const [service, setServices] = useState({});
+  const [loading, setLoading] = useState(true);
+
   const { _id, name, img, price, description } = service;
 
   useEffect(() => {
@@ -20,6 +23,19 @@ const SingleServicesPage = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   const location = useLocation();
+  const pageId = location.pathname.split('/services/')[1];
+
+  useEffect(() => {
+    fetch(`https://corner-advisor-server.vercel.app/services/${pageId}`)
+      .then(res => res.json())
+      .then(data => {
+        setLoading(false);
+        setServices(data);
+      })
+      .catch(err => {
+        setLoading(false)
+      })
+  }, [pageId]);
 
   useEffect(() => {
     fetch(`https://corner-advisor-server.vercel.app/reviews?serviceId=${_id}`)
@@ -30,12 +46,19 @@ const SingleServicesPage = () => {
   }, [_id]);
 
 
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
 
   if (!service?._id) {
     return (
       <Error></Error>
     );
   }
+
+
 
   return (
     <section className='py-10 md:py-20'>

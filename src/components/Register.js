@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../contexts/AuthContextComp';
 import GoogleSignIn from './GoogleSignIn';
+import Loading from './Loading';
 
 const Register = () => {
   const { userRegister, updateUserProfile, getUserJwt } = useContext(AuthContext);
+
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,6 +16,7 @@ const Register = () => {
 
   const handleUserRegister = (event) => {
     event.preventDefault();
+    setLoading(true);
 
     const form = event.target;
     const name = form.name.value;
@@ -22,13 +26,13 @@ const Register = () => {
 
     userRegister(email, password)
       .then(result => {
-        console.log(result.user);
         form.reset();
         getUserJwt(result.user.email)
           .then(data => {
             localStorage.setItem('corner-token', data.token);
             updateUserProfile({ displayName: name, photoURL: image })
               .then(res => {
+                setLoading(false);
                 toast.success('Successfully logged in!!');
                 navigate(from);
               })
@@ -37,6 +41,12 @@ const Register = () => {
       .catch(error => {
         toast.error('Something is wrong!!');
       })
+  }
+
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
   }
 
   return (

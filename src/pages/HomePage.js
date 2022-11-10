@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import videoButton from '../assets/video-button.png';
 import group42 from '../assets/Group-42.svg';
