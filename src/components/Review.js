@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import user from '../assets/user.png';
 
 
 const Review = ({ review, edit, handleReviewDelete }) => {
@@ -21,7 +22,7 @@ const Review = ({ review, edit, handleReviewDelete }) => {
             <FaTrash onClick={() => handleReviewDelete(review._id)} className='absolute right-0 top-0'></FaTrash>
           </>
         }
-        <img src={review.author.image} className='w-12 h-12 rounded-full mr-3 border border-border' alt="" />
+        <img src={review.author.image ? review.author.image : user} className='w-12 h-12 rounded-full mr-3 border border-border' alt="" />
         <div>
           <p className='font-medium'>{review.author.name}</p>
           <p>Rating: {review.rating}</p>

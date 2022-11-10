@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Loading from '../components/Loading';
 import Services from '../components/Services';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
@@ -7,7 +7,27 @@ const ServicesPage = () => {
 
   useDocumentTitle('Services');
 
-  const services = useLoaderData();
+  const [services, setServices] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://corner-advisor-server.vercel.app/services')
+      .then(res => res.json())
+      .then(data => {
+        setLoading(false);
+        setServices(data);
+      })
+      .catch(err => {
+        setLoading(false)
+      })
+  }, []);
+
+
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
 
   return (
     <section className='py-14 md:py-20'>

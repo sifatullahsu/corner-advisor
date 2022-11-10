@@ -20,13 +20,11 @@ export const route = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage></HomePage>,
-        loader: () => fetch('https://corner-advisor-server.vercel.app/services?page=1&size=3')
+        element: <HomePage></HomePage>
       },
       {
         path: '/services',
-        element: <ServicesPage></ServicesPage>,
-        loader: () => fetch('https://corner-advisor-server.vercel.app/services')
+        element: <ServicesPage></ServicesPage>
       },
       {
         path: '/services/:id',

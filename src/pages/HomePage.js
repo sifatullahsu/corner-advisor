@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Hero from '../components/Hero';
 import videoButton from '../assets/video-button.png';
@@ -6,12 +6,33 @@ import group42 from '../assets/Group-42.svg';
 import section3 from '../assets/section3.png';
 import Services from '../components/Services';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import Loading from '../components/Loading';
 
 const HomePage = () => {
 
   useDocumentTitle('Home');
 
-  const services = useLoaderData();
+  const [services, setServices] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('https://corner-advisor-server.vercel.app/services?page=1&size=3')
+      .then(res => res.json())
+      .then(data => {
+        setLoading(false);
+        setServices(data);
+      })
+      .catch(err => {
+        setLoading(false)
+      })
+  }, []);
+
+
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
 
   return (
     <div>
@@ -65,7 +86,7 @@ const HomePage = () => {
               </figure>
               <div className="">
                 <h5 className="text-lg md:text-xl font-semibold mb-3 text-secondary">Magnifying New Business Prospects Via Research</h5>
-                <p className="text-text">When forming a business, its legal structure is one of the owner’s most important practical decisions.</p></div>
+                <p className="text-text">When forming a business, its legal structure is one of the owner's most important practical decisions.</p></div>
             </div>
           </div>
           <div className="md:basis-3/6">

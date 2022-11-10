@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -10,7 +11,7 @@ const MyReviewsPage = () => {
   const { user, userLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
 
-  console.log(localStorage.getItem('corner-token'));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`https://corner-advisor-server.vercel.app/get-reviews-by-email?email=${user.email}`, {
@@ -27,7 +28,11 @@ const MyReviewsPage = () => {
         }
       })
       .then(data => {
+        setLoading(false);
         setReviews(data.data);
+      })
+      .catch(err => {
+        setLoading(false);
       })
   }, [user, userLogout]);
 
@@ -44,6 +49,12 @@ const MyReviewsPage = () => {
       .catch(err => toast.error('Somthing is wrong..'))
   }
 
+
+  if (loading) {
+    return (
+      <Loading></Loading>
+    );
+  }
   return (
     <section className='py-10'>
       <div className='container'>
