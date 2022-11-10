@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import { AuthContext } from '../contexts/AuthContextComp';
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <footer className='bg-gray'>
       <div className='container py-10'>
@@ -30,10 +33,18 @@ const Footer = () => {
           </div>
           <div>
             <span className="footer-title">Account</span>
-            <Link to='/login' className="link link-hover">Login</Link>
-            <Link to='/register' className="link link-hover">Register</Link>
-            <Link to='/my-reviews' className="link link-hover">My Review</Link>
-            <Link to='/add-service' className="link link-hover">Add Service</Link>
+            {
+              !user?.uid ?
+                <>
+                  <Link to='/login' className="link link-hover">Login</Link>
+                  <Link to='/register' className="link link-hover">Register</Link>
+                </>
+                :
+                <>
+                  <Link to='/my-reviews' className="link link-hover">My Review</Link>
+                  <Link to='/add-service' className="link link-hover">Add Service</Link>
+                </>
+            }
           </div>
         </div>
       </div>
