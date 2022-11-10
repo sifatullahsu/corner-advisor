@@ -58,10 +58,10 @@ const HomePage = () => {
           <div className='md:basis-3/6'>
             <h2 className='text-2xl md:text-3xl font-bold mb-5 text-secondary'>Brainstorming Interactive Ideas on Business Transformation</h2>
             <p className='mb-5 text-text'>I assists companies and individuals to establish business operation in Bangladesh and abroad including subsidiary formation, operating agreements, licensing and establishing relationship with banks, vendors, customers  with our virtual associate consultants worldwide.</p>
-            <Link to='' className='flex items-center'>
+            <a href="https://www.sifatullahsu.com/" target="_blank" rel="noreferrer" className='flex items-center'>
               <img src={videoButton} className='w-10 mr-4' alt="" />
               <p>Watch My Story</p>
-            </Link>
+            </a>
           </div>
           <div className='md:basis-3/6'></div>
         </div>
