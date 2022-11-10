@@ -1,10 +1,16 @@
 import React from 'react';
+import errorImg from '../assets/error.jpg';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const Error = () => {
+  useDocumentTitle('404');
+
   return (
-    <div>
-      Error Page
-    </div>
+    <section className='py-16'>
+      <div className="container">
+        <img src={errorImg} className='max-w-lg mx-auto' alt="" />
+      </div>
+    </section>
   );
 };
 

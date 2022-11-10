@@ -1,8 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Services from '../components/Services';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const ServicesPage = () => {
+
+  useDocumentTitle('Services');
+
   const services = useLoaderData();
 
   return (

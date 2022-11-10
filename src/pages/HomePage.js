@@ -5,8 +5,12 @@ import videoButton from '../assets/video-button.png';
 import group42 from '../assets/Group-42.svg';
 import section3 from '../assets/section3.png';
 import Services from '../components/Services';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const HomePage = () => {
+
+  useDocumentTitle('Home');
+
   const services = useLoaderData();
 
   return (

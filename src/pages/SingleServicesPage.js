@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import AddReview from '../components/AddReview';
 import NeedHelp from '../components/NeedHelp';
 import Reviews from '../components/Reviews';
@@ -7,15 +8,17 @@ import { AuthContext } from '../contexts/AuthContextComp';
 
 const SingleServicesPage = () => {
 
-  const { user } = useContext(AuthContext);
-
   const service = useLoaderData();
   const { _id, name, img, price, description } = service;
 
-  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    document.title = name + " - Corner Advisor";
+  }, [name]);
 
+
+  const { user } = useContext(AuthContext);
+  const [reviews, setReviews] = useState([]);
   const location = useLocation();
-  const navigation = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
@@ -32,7 +35,13 @@ const SingleServicesPage = () => {
           <div className='basis-8/12'>
 
             <div className='mb-16'>
-              <img src={img} className='w-full border border-border mb-10' alt="" />
+              <PhotoProvider>
+                <PhotoView src={img}>
+                  <figure>
+                    <img src={img} className='w-full border border-border mb-10' alt="" />
+                  </figure>
+                </PhotoView>
+              </PhotoProvider>
               <h2 className='text-2xl font-semibold mb-4 text-secondary'>{name}</h2>
               <p className='text-text mb-4'>Price: {price}</p>
               <p className='text-text mb-4'>{description}</p>

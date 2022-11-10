@@ -1,6 +1,10 @@
 import React from 'react';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const BlogPage = () => {
+
+  useDocumentTitle('Blog');
+
   return (
     <div className='container py-10'>
       <div className='bg-gray max-w-2xl mx-auto border border-border'>

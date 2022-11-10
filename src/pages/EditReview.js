@@ -1,8 +1,11 @@
 import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const EditReview = () => {
+
+  useDocumentTitle('Edit Review')
 
   const review = useLoaderData();
   const navigate = useNavigate();

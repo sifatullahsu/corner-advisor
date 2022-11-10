@@ -17,7 +17,7 @@ const Service = ({ service }) => {
       <div className="card-body bg-gray p-4">
         <h4 className="card-title text-lg text-secondary">{name}</h4>
         <p>{price}</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, distinctio.</p>
+        <p>{description.length > 100 ? <>{description.slice(0, 100)}...</> : description}</p>
         <div className="card-actions">
           <Link to={`/services/${_id}`}>
             <button className="btn btn-primary rounded">View details</button>

@@ -1,8 +1,10 @@
 import React from 'react';
 import Login from '../components/Login';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const LoginPage = () => {
 
+  useDocumentTitle('Login');
 
   return (
     <section className='py-10'>

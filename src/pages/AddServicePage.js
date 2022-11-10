@@ -1,7 +1,11 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+
 
 const AddServicePage = () => {
+
+  useDocumentTitle('Add Service');
 
   const handleAddService = (event) => {
     event.preventDefault();
