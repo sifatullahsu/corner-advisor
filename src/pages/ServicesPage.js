@@ -14,7 +14,7 @@ const ServicesPage = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`http://localhost:5000/services?page=${page}&size=${3}`)
+    fetch(`https://corner-advisor-server.vercel.app/services?page=${page}&size=${3}`)
       .then(res => res.json())
       .then(data => {
         setLoading(false);

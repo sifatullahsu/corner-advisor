@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
@@ -16,7 +15,9 @@ const MyReviewsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/get-reviews-by-email?email=${user.email}&page=${page}&size=${3}`, {
+    setLoading(true);
+
+    fetch(`https://corner-advisor-server.vercel.app/get-reviews-by-email?email=${user.email}&page=${page}&size=${3}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('corner-token')}`
       }
@@ -56,8 +57,6 @@ const MyReviewsPage = () => {
   }
 
 
-  console.log(reviews);
-
   if (loading) {
     return (
       <Loading></Loading>
@@ -71,30 +70,11 @@ const MyReviewsPage = () => {
             <h4 className='text-xl mb-3'>My reviews</h4>
             {
               reviews.data?.length > 0 ?
-                <Reviews reviews={reviews.data} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
+                <Reviews reviews={reviews} edit='true' handleReviewDelete={handleReviewDelete}
+                  setPage={setPage} loading={loading}></Reviews>
                 :
                 <p>No reviews were added..</p>
             }
-            <ReactPaginate
-              previousLabel="Previous"
-              nextLabel="Next"
-              pageClassName="page-item"
-              pageLinkClassName="page-link"
-              previousClassName="page-item"
-              previousLinkClassName="page-link"
-              nextClassName="page-item"
-              nextLinkClassName="page-link"
-              breakLabel="..."
-              breakClassName="page-item"
-              breakLinkClassName="page-link"
-              pageCount={reviews.pagination.total}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={2}
-              onPageChange={(e) => setPage(e.selected + 1)}
-              containerClassName="pagination"
-              activeClassName="active"
-              forcePage={0}
-            />
           </div>
         </div>
       </div>

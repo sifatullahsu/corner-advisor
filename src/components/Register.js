@@ -39,6 +39,7 @@ const Register = () => {
           })
       })
       .catch(error => {
+        setLoading(false);
         toast.error('Something is wrong!!');
       })
   }
