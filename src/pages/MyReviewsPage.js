@@ -1,20 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { toast } from 'react-toastify';
 import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+// import '../../assets/index.less';
 
 const MyReviewsPage = () => {
   useDocumentTitle('My Reviews');
 
   const { user, userLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const [count, setCount] = useState(0);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://corner-advisor-server.vercel.app/get-reviews-by-email?email=${user.email}`, {
+    fetch(`http://localhost:5000/get-reviews-by-email?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('corner-token')}`
       }
@@ -29,7 +32,7 @@ const MyReviewsPage = () => {
       })
       .then(data => {
         setLoading(false);
-        setReviews(data.data);
+        setReviews(data);
       })
       .catch(err => {
         setLoading(false);
@@ -54,6 +57,8 @@ const MyReviewsPage = () => {
   }
 
 
+  console.log(reviews);
+
   if (loading) {
     return (
       <Loading></Loading>
@@ -66,11 +71,31 @@ const MyReviewsPage = () => {
           <div className='bg-gray py-8 px-3 md:p-10 border border-border'>
             <h4 className='text-xl mb-3'>My reviews</h4>
             {
-              reviews?.length > 0 ?
-                <Reviews reviews={reviews} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
+              reviews.data?.length > 0 ?
+                <Reviews reviews={reviews.data} edit='true' handleReviewDelete={handleReviewDelete}></Reviews>
                 :
                 <p>No reviews were added..</p>
             }
+            <ReactPaginate
+              previousLabel="Previous"
+              nextLabel="Next"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              breakLabel="..."
+              breakClassName="page-item"
+              breakLinkClassName="page-link"
+              pageCount={reviews.pagination.total}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={2}
+              onPageChange={(e) => setCount(e.selected + 1)}
+              containerClassName="pagination"
+              activeClassName="active"
+              forcePage={0}
+            />
           </div>
         </div>
       </div>

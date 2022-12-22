@@ -68,3 +68,22 @@ header {
   min-height: 35px;
   font-size: 13px;
 }
+
+
+
+
+
+li.page-item {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+li.page-item a {
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+li.page-item.active a {
+  @apply bg-primary border-primary text-white;
+}
