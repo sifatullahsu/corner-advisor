@@ -1,19 +1,25 @@
 import React from 'react';
 import Service from './Service';
 import ReactPaginate from 'react-paginate';
+import Loading from './Loading';
 
-const Services = ({ services, setPage }) => {
+const Services = ({ services, setPage, loading }) => {
 
   return (
     <>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
-        {
-          services.data.map(service => <Service
-            key={service._id}
-            service={service}
-          ></Service>)
-        }
-      </div>
+      {
+        !loading ?
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
+            {
+              services.data.map(service => <Service
+                key={service._id}
+                service={service}
+              ></Service>)
+            }
+          </div>
+          :
+          <Loading></Loading>
+      }
       <div className='mt-10'>
         <ReactPaginate
           previousLabel="Previous"
@@ -27,7 +33,7 @@ const Services = ({ services, setPage }) => {
           breakLabel="..."
           breakClassName="page-item"
           breakLinkClassName="page-link"
-          pageCount={services.pagination.total}
+          pageCount={services?.pagination?.total}
           marginPagesDisplayed={2}
           pageRangeDisplayed={2}
           onPageChange={(e) => setPage(e.selected + 1)}

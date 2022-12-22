@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Loading from '../components/Loading';
+// import Loading from '../components/Loading';
 import Services from '../components/Services';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
@@ -25,13 +25,12 @@ const ServicesPage = () => {
       })
   }, [page]);
 
-  console.log(services);
 
-  if (loading) {
+  /* if (loading) {
     return (
       <Loading></Loading>
     );
-  }
+  } */
 
   return (
     <section className='py-14 md:py-20'>
@@ -41,7 +40,7 @@ const ServicesPage = () => {
             <h2 className='text-2xl md:text-3xl font-bold mb-5 text-secondary'>All Advantage Services</h2>
             <p className='text-text'>It's a complete business solutions to its clients and source,supplies industry proven technologies and machines from global believed companies.</p>
           </div>
-          <Services services={services} setPage={setPage}></Services>
+          <Services services={services} setPage={setPage} loading={loading}></Services>
         </div>
       </div>
     </section >
