@@ -87,3 +87,7 @@ li.page-item a {
 li.page-item.active a {
   @apply bg-primary border-primary text-white;
 }
+
+li.page-item a[aria-disabled="true"] {
+  color: #ddd;
+}

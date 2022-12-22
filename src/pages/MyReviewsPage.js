@@ -5,19 +5,18 @@ import Loading from '../components/Loading';
 import Reviews from '../components/Reviews';
 import { AuthContext } from '../contexts/AuthContextComp';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
-// import '../../assets/index.less';
 
 const MyReviewsPage = () => {
   useDocumentTitle('My Reviews');
 
   const { user, userLogout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(1);
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/get-reviews-by-email?email=${user.email}`, {
+    fetch(`http://localhost:5000/get-reviews-by-email?email=${user.email}&page=${page}&size=${3}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('corner-token')}`
       }
@@ -37,7 +36,7 @@ const MyReviewsPage = () => {
       .catch(err => {
         setLoading(false);
       })
-  }, [user, userLogout]);
+  }, [user, userLogout, page]);
 
 
   const handleReviewDelete = (id) => {
@@ -91,7 +90,7 @@ const MyReviewsPage = () => {
               pageCount={reviews.pagination.total}
               marginPagesDisplayed={2}
               pageRangeDisplayed={2}
-              onPageChange={(e) => setCount(e.selected + 1)}
+              onPageChange={(e) => setPage(e.selected + 1)}
               containerClassName="pagination"
               activeClassName="active"
               forcePage={0}
