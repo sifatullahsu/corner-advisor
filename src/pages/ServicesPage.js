@@ -9,11 +9,12 @@ const ServicesPage = () => {
 
   const [services, setServices] = useState({});
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
 
-    fetch('http://localhost:5000/services')
+    fetch(`http://localhost:5000/services?page=${page}&size=${3}`)
       .then(res => res.json())
       .then(data => {
         setLoading(false);
@@ -22,8 +23,9 @@ const ServicesPage = () => {
       .catch(err => {
         setLoading(false)
       })
-  }, []);
+  }, [page]);
 
+  console.log(services);
 
   if (loading) {
     return (
@@ -39,7 +41,7 @@ const ServicesPage = () => {
             <h2 className='text-2xl md:text-3xl font-bold mb-5 text-secondary'>All Advantage Services</h2>
             <p className='text-text'>It's a complete business solutions to its clients and source,supplies industry proven technologies and machines from global believed companies.</p>
           </div>
-          <Services services={services}></Services>
+          <Services services={services} setPage={setPage}></Services>
         </div>
       </div>
     </section >
