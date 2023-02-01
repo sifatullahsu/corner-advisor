@@ -40,7 +40,7 @@ const ServicesPage = () => {
             <h2 className='text-2xl md:text-3xl font-bold mb-5 text-secondary'>All Advantage Services</h2>
             <p className='text-text'>It's a complete business solutions to its clients and source,supplies industry proven technologies and machines from global believed companies.</p>
           </div>
-          <Services services={services} setPage={setPage} loading={loading}></Services>
+          <Services services={services} setPage={setPage} loading={loading} isPagination={true}></Services>
         </div>
       </div>
     </section >

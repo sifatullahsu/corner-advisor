@@ -44,7 +44,7 @@ const HomePage = () => {
               <h2 className='text-2xl md:text-3xl font-bold mb-5 text-secondary'>All Advantage Services</h2>
               <p className='text-text'>It's a complete business solutions to its clients and source,supplies industry proven technologies and machines from global believed companies.</p>
             </div>
-            <Services services={services}></Services>
+            <Services services={services} isPagination={false}></Services>
             <div className='mt-14 text-center'>
               <Link to='/services'>
                 <button className="btn btn-primary rounded">View all</button>

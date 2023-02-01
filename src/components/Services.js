@@ -3,7 +3,7 @@ import Service from './Service';
 import ReactPaginate from 'react-paginate';
 import Loading from './Loading';
 
-const Services = ({ services, setPage, loading }) => {
+const Services = ({ services, setPage, loading, isPagination }) => {
 
   return (
     <>
@@ -21,7 +21,7 @@ const Services = ({ services, setPage, loading }) => {
           <Loading></Loading>
       }
       {
-        services?.pagination &&
+        (isPagination && services?.pagination) &&
         <div className='mt-10'>
           <ReactPaginate
             previousLabel="Previous"
