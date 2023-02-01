@@ -40,7 +40,7 @@ const SingleServicesPage = () => {
           .then(res => res.json())
           .then(data => {
             setReviewLoading(false);
-            setReviews(data.data);
+            setReviews(data);
           })
       })
       .catch(err => {
@@ -90,7 +90,7 @@ const SingleServicesPage = () => {
                   :
                   <>
                     {
-                      reviews.length > 0 ?
+                      reviews?.data?.length > 0 ?
                         <Reviews reviews={reviews}></Reviews>
                         :
                         <p>No review found..</p>
